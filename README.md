@@ -4,31 +4,29 @@ pathpublic
 
 ### OVERVIEW:
 
-`css/main.css` and `static.mydomain.com/css/main.css` could be public paths. pathpublic will yield a file's public path.
+`css/main.css` and `static.mydomain.com/css/main.css` could be public paths. pathpublic will get a file's public path.
 
 For example:
 
  ```javascript
- publicpath = pathpublic.yield(
+ console.log(pathpublic.get(
      '/home/bumblehead/app/css/main.css',
      'css/'
- );
- console.log(publicpath); 
+ ));
  // css/main.css
  ```
  
 Another example:
  
  ```javascript 
- publicpath = pathpublic.yield(
+ console.log(pathpublic.get(
      '/home/bumblehead/app/css/main.css',
      'https://static.mydomain.com/css/'
- );
- console.log(publicpath); 
+ ));
  // https://static.mydomain.com/css/main.css 
  ```
  
-'Useful for scripts that building and deploying web applications.
+'Useful for scripts building/deploying a web application.
 
 It may be used in a browser or a node.js script environment.
 

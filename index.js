@@ -17,7 +17,7 @@ var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
   // filepath: '/home/scr/app/go/blah.js'
   // publicRoot: 'static.domain.com/app/'
   // returns 'static.domain.com/app/go/blah.js'
-  yield : function (filepath, publicRoot) {
+  get : function (filepath, publicRoot) {
     var rDir, rDirPath, rIndex, fIndex;
 
     return (function getFilepathMatch (publicRootSub) {

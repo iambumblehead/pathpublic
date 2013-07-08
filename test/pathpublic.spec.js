@@ -38,12 +38,12 @@ describe("pathpublic.getOnPathStrFirstDirStr", function () {
 
 });
 
-describe("pathpublic.yield", function () {
+describe("pathpublic.get", function () {
   var result, resultExpected;
 
   it("should return a relative public path", function () {
     resultExpected = 'css/main.css';
-    result = pathpublic.yield(
+    result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
       'css/'
     );
@@ -53,7 +53,7 @@ describe("pathpublic.yield", function () {
 
   it("should return a relative public path", function () {
     resultExpected = 'temp/root/css/main.css';
-    result = pathpublic.yield(
+    result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
       'temp/root/css/'
     );
@@ -63,7 +63,7 @@ describe("pathpublic.yield", function () {
 
   it("should return a relative public path", function () {
     resultExpected = 'temp/root/css/main.css';
-    result = pathpublic.yield(
+    result = pathpublic.get(
       '/home/bumblehead/app/script-collection/css/main.css',
       'temp/root/css/'
     );
@@ -73,7 +73,7 @@ describe("pathpublic.yield", function () {
 
   it("should return a relative public path", function () {
     resultExpected = 'script-collection/app/css/main.css';
-    result = pathpublic.yield(
+    result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
       'script-collection/app/css/'
     );
@@ -83,7 +83,7 @@ describe("pathpublic.yield", function () {
 
   it("should return a full public path", function () {
     resultExpected = 'https://static.mydomain.com/chupo/app/css/main.css';
-    result = pathpublic.yield(
+    result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
       'https://static.mydomain.com/chupo/app/css/'
     );
@@ -93,7 +93,7 @@ describe("pathpublic.yield", function () {
 
   it("should return a full public path", function () {
     resultExpected = 'https://static.mydomain.com/app/css/main.css';
-    result = pathpublic.yield(
+    result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
       'https://static.mydomain.com/app/css/'
     );
@@ -103,7 +103,7 @@ describe("pathpublic.yield", function () {
 
   it("should return a full public path", function () {
     resultExpected = 'https://static.mydomain.com/app/css/main.css';
-    result = pathpublic.yield(
+    result = pathpublic.get(
       './bumblehead/app/css/main.css',
       'https://static.mydomain.com/app/css/'
     );
@@ -113,7 +113,7 @@ describe("pathpublic.yield", function () {
 
   it("should return a full public path", function () {
     resultExpected = 'https://static.mydomain.com/app/css/main.css';
-    result = pathpublic.yield(
+    result = pathpublic.get(
       'bumblehead/app/css/main.css',
       'https://static.mydomain.com/app/css/'
     );
