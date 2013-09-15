@@ -51,6 +51,16 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
+  it("should return a posix relative public", function () {
+    resultExpected = './css/main.css';
+    result = pathpublic.get(
+      '/home/bumblehead/app/css/main.css',
+      './css/'
+    );
+
+    expect( result ).toBe( resultExpected );
+  });
+
   it("should return a relative public path", function () {
     resultExpected = 'temp/root/css/main.css';
     result = pathpublic.get(

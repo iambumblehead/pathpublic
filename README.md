@@ -16,6 +16,14 @@ For example:
  // css/main.css
  ```
  
+ ```javascript
+ console.log(pathpublic.get(
+     '/home/bumblehead/app/css/main.css',
+     './css/'
+ ));
+ // ./css/main.css
+ ```
+ 
 Another example:
  
  ```javascript 
@@ -25,6 +33,8 @@ Another example:
  ));
  // https://static.mydomain.com/css/main.css 
  ```
+ 
+ 
  
 'Useful for scripts building/deploying a web application.
 
