@@ -38,6 +38,7 @@ describe("pathpublic.getOnPathStrFirstDirStr", function () {
 
 });
 
+
 describe("pathpublic.get", function () {
   var result, resultExpected;
 
@@ -46,6 +47,27 @@ describe("pathpublic.get", function () {
     result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
       'css/'
+    );
+
+    expect( result ).toBe( resultExpected );
+  });
+
+  it("should return a relative public path", function () {
+    resultExpected = 'css/main.css';
+    result = pathpublic.get(
+      'goodcss/home/bumblehead/app/css/main.css',
+      'css/'
+    );
+
+    expect( result ).toBe( resultExpected );
+  });
+
+
+  it("should return a relative public path", function () {
+    resultExpected = '/css/main.css';
+    result = pathpublic.get(
+      'goodcss/home/bumblehead/app/css/main.css',
+      '/css'
     );
 
     expect( result ).toBe( resultExpected );
