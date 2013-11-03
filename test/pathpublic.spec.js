@@ -62,7 +62,6 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-
   it("should return a relative public path", function () {
     resultExpected = '/css/main.css';
     result = pathpublic.get(
@@ -148,6 +147,16 @@ describe("pathpublic.get", function () {
     result = pathpublic.get(
       'bumblehead/app/css/main.css',
       'https://static.mydomain.com/app/css/'
+    );
+
+    expect( result ).toBe( resultExpected );
+  });
+
+  it("should return filename and path as `/filname` if public path is `/`", function () {
+    resultExpected = '/main.css';
+    result = pathpublic.get(
+      'bumblehead/app/css/main.css',
+      '/'
     );
 
     expect( result ).toBe( resultExpected );

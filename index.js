@@ -20,9 +20,14 @@ var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
   get : function (filepath, publicRoot) {
     var rDir, rDirPath, rIndex, fIndex;
 
+    // 'bumblehead/app/css/main.css'.replace(/.*\//, '') === 'main.css'
+    if (publicRoot === '/') {
+      return filepath.replace(/.*\//, '/');
+    }
+
     return (function getFilepathMatch (publicRootSub) {
       if (typeof publicRootSub === 'string') {
-        rDir = pathpublic.getOnPathStrFirstDirStr(publicRootSub);        
+        rDir = pathpublic.getOnPathStrFirstDirStr(publicRootSub);   
 
         if (rDir) {
           rIndex = publicRootSub.indexOf(rDir);
