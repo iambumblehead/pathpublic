@@ -22,11 +22,18 @@ describe("pathpublic.getOnPathStrFirstDirStr", function () {
     expect( result ).toBe( 'app' );
   });
 
-  it("should return 'app' from './app/css'", function () {  
+  it("should return '.' from './app/css'", function () {  
     var pathStr = './app/css';
     var result = pathpublic.getOnPathStrFirstDirStr(pathStr);
 
-    expect( result ).toBe( 'app' );
+    expect( result ).toBe( '.' );
+  });
+
+  it("should return '..' from '../app/css'", function () {  
+    var pathStr = '../app/css';
+    var result = pathpublic.getOnPathStrFirstDirStr(pathStr);
+
+    expect( result ).toBe( '..' );
   });
 
   it("should return 'app' from 'app/css'", function () {  
@@ -161,5 +168,18 @@ describe("pathpublic.get", function () {
 
     expect( result ).toBe( resultExpected );
   });
+
+
+ //comments/PkBigBeastModal.mustache ./comments
+  it("should return filename and path as `./comments/PkBigBeastModal.mustache` if public path is `./comments`", function () {
+    resultExpected = './comments/PkBigBeastModal.mustache';
+    result = pathpublic.get(
+      './comments/PkBigBeastModal.mustache', // outputpath
+      './comments' // publicpath
+    );
+
+    expect( result ).toBe( resultExpected );
+  });
+
 
 });
