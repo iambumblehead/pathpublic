@@ -1,5 +1,6 @@
 var pathpublic = require('../index.js');
 
+
 describe("pathpublic.getOnPathStrFirstDirStr", function () {
   it("should return 'static.domain.com' from 'https://static.domain.com/app'", function () {  
     var pathStr = 'https://static.domain.com/app';
@@ -170,7 +171,18 @@ describe("pathpublic.get", function () {
   });
 
 
- //comments/PkBigBeastModal.mustache ./comments
+  it("should return same filename if publicpath is first part of the path", function () {
+    resultExpected = '/comments/PkBigBeastModal.mustache';
+    result = pathpublic.get(
+      '/comments/PkBigBeastModal.mustache', // outputpath
+      '/comments' // publicpath
+    );
+
+    expect( result ).toBe( resultExpected );
+  });
+
+
+  // should preserve `.` in `./comments`
   it("should return filename and path as `./comments/PkBigBeastModal.mustache` if public path is `./comments`", function () {
     resultExpected = './comments/PkBigBeastModal.mustache';
     result = pathpublic.get(

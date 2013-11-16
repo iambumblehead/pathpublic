@@ -1,7 +1,6 @@
 var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
 
   getOnPathStrFirstDirStr : function (path) {
-    //var initialPathRe = /(?:https?:\/\/|\.?\/)?([^\/]*)/,
     var initialPathRe = /(?:https?:\/\/|\/)?([^\/]*)/,
         match, dirStr = ''; 
 
@@ -30,6 +29,7 @@ var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
       if (typeof publicRootSub === 'string') {
         rDir = pathpublic.getOnPathStrFirstDirStr(publicRootSub);   
 
+
         if (rDir) {
           // avoid matching goodcss when searching for "/css" on "goodcss/ho/css/main.css". 
           // escape directory separatorss.
@@ -37,17 +37,25 @@ var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
           rIndex = publicRootSub.indexOf(rDir);
           rDirPath = publicRootSub.substring(rIndex);
           rDirPath = rDirPath.replace(/\//g, '\/');
-          rDirPath = new RegExp('\(?:[\\W]\)' + rDirPath + '|^' + rDirPath);
+
+          // match the path beginning with any word char
+          rDirPath = new RegExp('\(?:\\W\)' + rDirPath + '|^' + rDirPath);
 
           fIndex = filepath.search(rDirPath);
 
           if (fIndex === 0 || ++fIndex) {
             rIndex = publicRoot.indexOf(rDir);
+
+
             rDir = publicRoot.substring(0, rIndex);
             rDirPath = filepath.substring(fIndex);
 
+            // do not join paths to form 'rDir//rDirPath'
             // do not use node's path.join. normalizes paths that should not be
-            rDirPath = rDir + rDirPath;
+            if (rDir.match(/^[^\/]/) || rDirPath.match(/^[^\/]/)) {
+              rDirPath = rDir + rDirPath;              
+            }
+
           } else {
             publicRootSub = publicRootSub.substring(rIndex + rDir.length);
             rDirPath = getFilepathMatch(publicRootSub);
