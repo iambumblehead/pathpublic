@@ -1,3 +1,7 @@
+// Filename: index.js  
+// Timestamp: 2016.04.03-15:24:19 (last modified)
+// Author(s): bumblehead <chris@bumblehead.com>
+
 var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
 
   getOnPathStrFirstDirStr : function (path) {
@@ -23,8 +27,10 @@ var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
     // 'bumblehead/app/css/main.css'.replace(/.*\//, '') === 'main.css'
     if (publicRoot === '/') {
       return filepath.replace(/.*\//, '/');
+    } else if (publicRoot === './') {
+      return filepath.replace(/.*\//, './');        
     }
-
+      
     return (function getFilepathMatch (publicRootSub) {
       if (typeof publicRootSub === 'string') {
         rDir = pathpublic.getOnPathStrFirstDirStr(publicRootSub);   

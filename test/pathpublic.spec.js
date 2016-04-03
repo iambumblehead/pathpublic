@@ -1,5 +1,8 @@
-var pathpublic = require('../index.js');
+// Filename: pathpublic.spec.js  
+// Timestamp: 2016.04.03-15:24:10 (last modified)
+// Author(s): bumblehead <chris@bumblehead.com>
 
+var pathpublic = require('../index.js');
 
 describe("pathpublic.getOnPathStrFirstDirStr", function () {
   it("should return 'static.domain.com' from 'https://static.domain.com/app'", function () {  
@@ -170,6 +173,15 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
+  it("should return filename and path as `/filname` if public path is `/`", function () {
+    resultExpected = './main.css';
+    result = pathpublic.get(
+      'bumblehead/app/css/main.css',
+      './'
+    );
+
+    expect( result ).toBe( resultExpected );
+  });    
 
   it("should return same filename if publicpath is first part of the path", function () {
     resultExpected = '/comments/PkBigBeastModal.mustache';
