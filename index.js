@@ -2,10 +2,10 @@
 // Timestamp: 2016.04.03-15:24:19 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
 
-var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
+const pathpublic = ((typeof module === 'object') ? module : {}).exports = {
 
-  getOnPathStrFirstDirStr : function (path) {
-    var initialPathRe = /(?:https?:\/\/|\/)?([^\/]*)/,
+  getOnPathStrFirstDirStr : path => {
+    let initialPathRe = /(?:https?:\/\/|\/)?([^\/]*)/,
         match, dirStr = ''; 
 
     if (typeof path === 'string') {
@@ -21,8 +21,8 @@ var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
   // filepath: '/home/scr/app/go/blah.js'
   // publicRoot: 'static.domain.com/app/'
   // returns 'static.domain.com/app/go/blah.js'
-  get : function (filepath, publicRoot) {
-    var rDir, rDirPath, rIndex, fIndex;
+  get : (filepath, publicRoot) => {
+    let rDir, rDirPath, rIndex, fIndex;
 
     // 'bumblehead/app/css/main.css'.replace(/.*\//, '') === 'main.css'
     if (publicRoot === '/') {
@@ -34,7 +34,6 @@ var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
     return (function getFilepathMatch (publicRootSub) {
       if (typeof publicRootSub === 'string') {
         rDir = pathpublic.getOnPathStrFirstDirStr(publicRootSub);   
-
 
         if (rDir) {
           // avoid matching goodcss when searching for "/css" on "goodcss/ho/css/main.css". 
@@ -63,8 +62,13 @@ var pathpublic = ((typeof module === 'object') ? module : {}).exports = {
             }
 
           } else {
+
             publicRootSub = publicRootSub.substring(rIndex + rDir.length);
+
             rDirPath = getFilepathMatch(publicRootSub);
+            if (typeof rDirPath === 'object') {
+              rDirPath = filepath;
+            }
           }
         }
       }

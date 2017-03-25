@@ -4,56 +4,59 @@
 
 var pathpublic = require('../index.js');
 
-describe("pathpublic.getOnPathStrFirstDirStr", function () {
-  it("should return 'static.domain.com' from 'https://static.domain.com/app'", function () {  
+describe("pathpublic.getOnPathStrFirstDirStr", () => {
+
+  it("should return 'static.domain.com' from 'https://static.domain.com/app'", () => {  
     var pathStr = 'https://static.domain.com/app';
     var result = pathpublic.getOnPathStrFirstDirStr(pathStr);
 
     expect( result ).toBe( 'static.domain.com' );
   });
 
-  it("should return 'static.domain.com' from 'static.domain.com/app'", function () {  
+  it("should return 'static.domain.com' from 'static.domain.com/app'", () => {  
     var pathStr = 'static.domain.com/app';
     var result = pathpublic.getOnPathStrFirstDirStr(pathStr);
 
     expect( result ).toBe( 'static.domain.com' );
   });
 
-  it("should return 'app' from '/app/css'", function () {  
+  it("should return 'app' from '/app/css'", () => {  
     var pathStr = '/app/css';
     var result = pathpublic.getOnPathStrFirstDirStr(pathStr);
 
     expect( result ).toBe( 'app' );
   });
 
-  it("should return '.' from './app/css'", function () {  
+  it("should return '.' from './app/css'", () => {  
     var pathStr = './app/css';
     var result = pathpublic.getOnPathStrFirstDirStr(pathStr);
 
     expect( result ).toBe( '.' );
   });
 
-  it("should return '..' from '../app/css'", function () {  
+  it("should return '..' from '../app/css'", () => {  
     var pathStr = '../app/css';
     var result = pathpublic.getOnPathStrFirstDirStr(pathStr);
 
     expect( result ).toBe( '..' );
   });
 
-  it("should return 'app' from 'app/css'", function () {  
+  it("should return 'app' from 'app/css'", () => {  
     var pathStr = 'app/css';
     var result = pathpublic.getOnPathStrFirstDirStr(pathStr);
 
     expect( result ).toBe( 'app' );
   });
 
+
+
 });
 
 
-describe("pathpublic.get", function () {
+describe("pathpublic.get", () => {
   var result, resultExpected;
 
-  it("should return a relative public path", function () {
+  it("should return a relative public path", () => {
     resultExpected = 'css/main.css';
     result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
@@ -63,7 +66,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a relative public path", function () {
+  it("should return a relative public path", () => {
     resultExpected = 'css/main.css';
     result = pathpublic.get(
       'goodcss/home/bumblehead/app/css/main.css',
@@ -73,7 +76,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a relative public path", function () {
+  it("should return a relative public path", () => {
     resultExpected = '/css/main.css';
     result = pathpublic.get(
       'goodcss/home/bumblehead/app/css/main.css',
@@ -83,7 +86,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a posix relative public", function () {
+  it("should return a posix relative public", () => {
     resultExpected = './css/main.css';
     result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
@@ -93,7 +96,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a relative public path", function () {
+  it("should return a relative public path", () => {
     resultExpected = 'temp/root/css/main.css';
     result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
@@ -103,7 +106,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a relative public path", function () {
+  it("should return a relative public path", () => {
     resultExpected = 'temp/root/css/main.css';
     result = pathpublic.get(
       '/home/bumblehead/app/script-collection/css/main.css',
@@ -113,7 +116,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a relative public path", function () {
+  it("should return a relative public path", () => {
     resultExpected = 'script-collection/app/css/main.css';
     result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
@@ -123,7 +126,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a full public path", function () {
+  it("should return a full public path", () => {
     resultExpected = 'https://static.mydomain.com/chupo/app/css/main.css';
     result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
@@ -133,7 +136,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a full public path", function () {
+  it("should return a full public path", () => {
     resultExpected = 'https://static.mydomain.com/app/css/main.css';
     result = pathpublic.get(
       '/home/bumblehead/app/css/main.css',
@@ -143,7 +146,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a full public path", function () {
+  it("should return a full public path", () => {
     resultExpected = 'https://static.mydomain.com/app/css/main.css';
     result = pathpublic.get(
       './bumblehead/app/css/main.css',
@@ -153,7 +156,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return a full public path", function () {
+  it("should return a full public path", () => {
     resultExpected = 'https://static.mydomain.com/app/css/main.css';
     result = pathpublic.get(
       'bumblehead/app/css/main.css',
@@ -163,7 +166,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return filename and path as `/filname` if public path is `/`", function () {
+  it("should return filename and path as `/filname` if public path is `/`", () => {
     resultExpected = '/main.css';
     result = pathpublic.get(
       'bumblehead/app/css/main.css',
@@ -173,7 +176,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
-  it("should return filename and path as `/filname` if public path is `/`", function () {
+  it("should return filename and path as `/filname` if public path is `/`", () => {
     resultExpected = './main.css';
     result = pathpublic.get(
       'bumblehead/app/css/main.css',
@@ -183,7 +186,7 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });    
 
-  it("should return same filename if publicpath is first part of the path", function () {
+  it("should return same filename if publicpath is first part of the path", () => {
     resultExpected = '/comments/PkBigBeastModal.mustache';
     result = pathpublic.get(
       '/comments/PkBigBeastModal.mustache', // outputpath
@@ -195,7 +198,7 @@ describe("pathpublic.get", function () {
 
 
   // should preserve `.` in `./comments`
-  it("should return filename and path as `./comments/PkBigBeastModal.mustache` if public path is `./comments`", function () {
+  it("should return filename and path as `./comments/PkBigBeastModal.mustache` if public path is `./comments`", () => {
     resultExpected = './comments/PkBigBeastModal.mustache';
     result = pathpublic.get(
       './comments/PkBigBeastModal.mustache', // outputpath
@@ -205,5 +208,15 @@ describe("pathpublic.get", function () {
     expect( result ).toBe( resultExpected );
   });
 
+  it("should return path '/first/path' from paths '/first/path' and '/public'", () => {
 
+    resultExpected = '/first/path';
+    result = pathpublic.get(
+      '/first/path', // outputpath
+      '/public' // publicpath
+    );
+    
+    expect( result ).toBe( resultExpected );
+  });
+  
 });
